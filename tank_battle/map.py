@@ -20,12 +20,10 @@ def generate_map(player_spawns):
     steel_count = int(total * 0.1)
     _place_random(grid, settings.STEEL, steel_count, player_spawns)
 
-    # 放满剩余非保护区域为砖墙 (可达20%左右)
-    for row in range(settings.ROWS):
-        for col in range(settings.COLS):
-            if grid[row][col] == settings.EMPTY and (col, row) not in player_spawns:
-                if random.random() < 0.4:
-                    grid[row][col] = settings.BRICK
+    # 计算当前空地数量，放置砖墙使空地接近60%
+    current_empty = sum(1 for row in grid for cell in row if cell == settings.EMPTY)
+    brick_count = current_empty - target_empty
+    _place_random(grid, settings.BRICK, max(0, brick_count), player_spawns)
 
     return grid
 
