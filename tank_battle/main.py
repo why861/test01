@@ -7,8 +7,8 @@ from .game import Game
 class Menu:
     def __init__(self, screen):
         self.screen = screen
-        self.title_font = pygame.font.SysFont("simhei", 40)
-        self.menu_font = pygame.font.SysFont("simhei", 28)
+        self.title_font = pygame.font.Font(None, 48)
+        self.menu_font = pygame.font.Font(None, 32)
 
     def show(self):
         """显示主菜单，返回 (mode, difficulty) 或 ('quit', None)。"""

@@ -10,7 +10,7 @@ class Game:
     def __init__(self, screen):
         self.screen = screen
         self.clock = pygame.time.Clock()
-        self.font = pygame.font.SysFont("simhei", 20)
+        self.font = pygame.font.Font(None, 24)
         self.running = True
         self.outcome = None
 
@@ -192,7 +192,7 @@ class Game:
             text = "Defeat! Press any key to return"
             color = settings.RED
 
-        result_font = pygame.font.SysFont("simhei", 36)
+        result_font = pygame.font.Font(None, 48)
         text_surface = result_font.render(text, True, color)
         text_rect = text_surface.get_rect(center=(settings.SCREEN_WIDTH // 2,
                                                    settings.SCREEN_HEIGHT // 2))
