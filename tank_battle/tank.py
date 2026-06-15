@@ -48,13 +48,6 @@ class Tank:
             return self.x + settings.TANK_SIZE - half_bullet + 2, cy
         return cx, cy
 
-    def can_move_forward(self, grid, tanks):
-        """检查向前移动是否会碰撞。"""
-        dx, dy = settings.DIRECTION_VECTORS[self.direction]
-        new_x = self.x + dx * self.speed
-        new_y = self.y + dy * self.speed
-        return self._can_place_at(new_x, new_y, grid, tanks)
-
     def _can_place_at(self, x, y, grid, tanks):
         """检查坦克在指定位置是否合法。"""
         margin = 2
@@ -144,17 +137,21 @@ class PlayerTank(Tank):
         if not self.alive:
             return None
 
-        # 方向切换
+        # 方向切换与移动
+        moved = False
         if keys[self.key_up]:
             self.direction = settings.UP
+            moved = self.move_forward(grid, tanks)
         elif keys[self.key_down]:
             self.direction = settings.DOWN
+            moved = self.move_forward(grid, tanks)
         elif keys[self.key_left]:
             self.direction = settings.LEFT
+            moved = self.move_forward(grid, tanks)
         elif keys[self.key_right]:
             self.direction = settings.RIGHT
+            moved = self.move_forward(grid, tanks)
 
-        self.move_forward(grid, tanks)
         bullet = None
         if keys[self.key_shoot]:
             bullet = self.shoot()
