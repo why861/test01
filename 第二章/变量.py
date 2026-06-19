@@ -6,13 +6,14 @@
 # print("Hello World")
 # print("---------")
 # print(None)
-num=10
-print(num)
-num=num+1
-print(num)
-num="OK"
-print(num)
-num=True
-print(num)
-num=False
-print(num)
+#
+# for i in range(1,10):
+#     for j in range(1,10):
+#         if j<=i:
+#             print(f"{j}×{i}={j*i}",end="\t")
+#     print()
+while True:
+    username = input("用户名：")
+    password = input("密码：")
+    if username == "" or password == "":
+        print("不能为空，重新输入")
